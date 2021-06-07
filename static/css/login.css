@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#title {
+  width: 100%;
+  text-align: center;
+}
+
+#login {
+  width: 40%;
+  height: 60%;
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+}
+
+.container {
+  width: 80%;
+  height: 100%;
+  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}

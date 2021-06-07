@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#content {
+  width: 100%;
+  min-height: 100vh;
+}
+
+#form {
+  width: 80%;
+  min-height: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.71);
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.71);
+}
+
+#title {
+  width: 100%;
+  text-align: center;
+}
+
+#choose {
+  width: 100%;
+  text-align: start;
+}
+
+#container {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+
+  grid-template-rows: repeat(10, 1fr);
+  grid-rows-gap: 10px;
+}
+
+#cat {
+  margin-top: 10px;
+}
+
+#holder {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#submit_btn {
+  width: 20%;
+}
