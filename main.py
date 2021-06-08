@@ -85,5 +85,12 @@ def cats():
         categories = mongo.db.categories.find({}).sort([('nb',-1)])
         return render_template('categories.html',categories = categories)
 
+
+@app.route('/logout')
+def logout():
+   
+    session.pop('u_id',None)
+    return redirect('/login')
+
 if __name__ == '__main__':
     app.run(debug=True)
