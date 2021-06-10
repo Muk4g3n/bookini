@@ -40,7 +40,7 @@
 
       <div id="content" class=" bg-dark">
           <div id="recommendation">
-        <p class="h4 text-white" >Recommended for you</p>
+        <p class="h2 text-white ml-4" >Recommended for you</p>
         <!-- Example split danger button -->
         
     </div>
@@ -53,7 +53,7 @@
                 <div class="card-body " id="card_body">
                   <h5 class="card-title">{{books[i+j]['book_title']}}</h5>
                   <p class="card-text">{{books[i+j]['Summary']}}</p>
-                  <a href="/{{books[i+j]['ISBN']}}" class="btn btn-primary">See the book</a>
+                  <a href="/{{books[i+j]['ISBN']}}" class="btn btn-primary">See more</a>
                 </div>
               </div>
               {% endfor %}
