@@ -104,11 +104,14 @@ def cats():
         return render_template('categories.html',categories = categories)
 
 
-@app.route('/similair')
+@app.route('/similair',methods =['POST','GET'])
 def sim():
-    res = mongo.db.books.find()
-    list_res = list(res)[:5]
-    return dumps(list_res)
+    if request.method == 'POST':
+        res = mongo.db.books.find()
+        print(request.form['rating'])
+        print(request.form['book_id'])
+        list_res = list(res)[:5]
+        return dumps(list_res)
 
 
 @app.route('/logout')
