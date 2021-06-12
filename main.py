@@ -36,7 +36,7 @@ def dashboard():
         recommendation = demarage_froid(category,books_data)
         
         last_rated_book = mongo.db.users.find_one({"User-ID" : session['u_id']})['last_rated']
-        print(last_rated_book)
+
         return render_template('dashbord.html',books = books,recommendation = recommendation)
     return redirect('/login')
 
@@ -54,12 +54,11 @@ def search():
 @app.route('/<int:id>',methods = ['GET','POST'])
 def book(id):
     if 'u_id' in session:
-        # if request.method == 'POST':
-        #     
-        #     return redirect('/')
-        # else:
+
             result = mongo.db.books.find_one_or_404({"ISBN":id})
-            return render_template('book.html',res = result)
+            rating = mongo.db.ratings.find_one({"ISBN":id,"User-ID":session['u_id']})
+            print(rating)
+            return render_template('book.html',res = result,rating=rating)
     return redirect('/login')
 
 @app.route('/login',methods= ['POST','GET'])

@@ -47,10 +47,17 @@
             </div>
             <p class="lead">{{res['Summary']}}</p>
             <h3>{{res['average_rating']}}</h3>
+            {%if not rating %}
             <div class="rate_form bg-light">
             <input class="form-control me-2" id="rating" type="number" max="10" min="0" name="rating" placeholder="Rate it" required>
             <button href="#group" class="btn btn-outline-primary bg-primary text-white" id="rate_button" type="submit">submit</button>
             </div>
+            {% else %}
+            <div class="rate_form bg-light">
+              <input class="form-control me-2" id="rating" type="number" max="10" min="0" name="rating" placeholder="{{rating['Book-Rating']}}" disabled>
+              <button href="#group" class="btn btn-outline-primary bg-primary text-white" id="rate_button" type="submit" disabled>Your rating</button>
+              </div>
+            {% endif %}
         </div>
       </div>
       
