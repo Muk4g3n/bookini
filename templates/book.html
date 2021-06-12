@@ -72,7 +72,7 @@
               'book_id' : window.location.pathname.replace('/','')},
       success: function (response) {
         var books = JSON.parse(response) 
-        output = '<div class="card-group" id="group" >'
+        output = ' <h1 class="text-white mt5 ml-3" >List of similair books</h1> <div class="card-group" id="group" >'
           for(i in books){
             output+= "<div class=\"card mr-5\" style=\"width: 18rem;\" id=\"book\"><img src=\"" + books[i].img_l + "\" class=\"card-img-top\" id=\"book_cover\" alt=\"...\"><div class=\"card-body \" id=\"card_body\"><h5 class=\"card-title\">" + books[i].book_title + "</h5><p class=\"card-text\">" + books[i].Summary + "</p><a href=\"/" + books[i].ISBN + "\" class=\"btn btn-primary\">See more</a></div></div>"
           }

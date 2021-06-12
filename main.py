@@ -10,31 +10,50 @@ app.config['MONGO_URI'] ='mongodb://localhost:27017/dataset'
 app.secret_key ='something secret'
 mongo = PyMongo(app)
 
+def demarage_froid(category , books_data ):
+  books_data_df=books_data[books_data["Category"].isin(category)]
+  average_all=books_data_df["average_rating"].mean()
+  nb_vote_min=books_data_df["SommeRating"].quantile(0.99)
+  def weighted_rating(data,min=nb_vote_min,aver=average_all):
+    ar=data["average_rating"]
+    vc=data["SommeRating"]
+    return (vc/(vc+min)*ar) + (min/(min+vc)*aver)
+  books_data_df["weighted_score"]=books_data_df.apply(weighted_rating,axis=1)
+  books_data_df=books_data_df.sort_values("weighted_score",ascending=False)
+  #on retour par exemple 10 livre
+  return books_data_df[0:10]
+
+
 @app.route('/')
 def dashboard():
     if 'u_id' in session:
         
         books = mongo.db.books.find()
-    
-        return render_template('dashbord.html',books = books)
+        category = mongo.db.users.find_one({'User-ID':session['u_id']})['Liked_categories']
+        category = ['[\''+x+'\']' for x in category]
+        category=["['History']","['Art']","['Science']"]
+        books_data = pd.DataFrame.from_dict(books)
+        books = mongo.db.books.find()
+        # books_data_df=books_data[books_data["Category"].isin(category)]
+        # average_all=books_data_df["average_rating"].mean()
+        # nb_vote_min=books_data_df["SommeRating"].quantile(0.99)
+        # def weighted_rating(data,min=nb_vote_min,aver=average_all):
+        #     ar=data["average_rating"]
+        #     vc=data["SommeRating"]
+        #     return (vc/(vc+min)*ar) + (min/(min+vc)*aver)
+        # books_data_df["weighted_score"]=books_data_df.apply(weighted_rating,axis=1)
+        # books_data_df=books_data_df.sort_values("weighted_score",ascending=False)
+        # print(books_data_df[0:10])
+        recommendation = demarage_froid(category,books_data)
+        print(recommendation)
+        return render_template('dashbord.html',books = books,recommendation = recommendation)
     return redirect('/login')
 
 @app.route('/<int:id>',methods = ['GET','POST'])
 def book(id):
     if 'u_id' in session:
         # if request.method == 'POST':
-        #     newrating = {
-        #         'User-ID' : session['u_id'],
-        #         'ISBN' : id,
-        #         'Book-Rating' : int(request.form['rating'])
-        #     }
-            
-        #     # mongo.db.ratings.insert_one(newrating)
-        #     current_book = mongo.db.books.find_one({'ISBN':id}) 
-        #     average = ((current_book['SommeRating'] * current_book['average_rating']) + newrating['Book-Rating']) / (current_book['SommeRating'] + 1)
-        #     current_book['average_rating'] = average              
-        #     current_book['SommeRating'] = current_book['SommeRating'] + 1
-        #     mongo.db.books.update_one({'ISBN' : id}, {"$set" : current_book})
+        #     
         #     return redirect('/')
         # else:
             result = mongo.db.books.find_one_or_404({"ISBN":id})
@@ -98,6 +117,7 @@ def signup():
 def cats():
     if request.method == 'POST':
         cat =  request.form.getlist('cat')
+        mongo.db.users.find_one_and_update({"User-ID" : session['u_id']},{"$set": {"Liked_categories": cat,'nb_ratings':0}})
         return redirect('/')
     else:
         categories = mongo.db.categories.find({}).sort([('nb',-1)])
@@ -110,6 +130,21 @@ def sim():
         res = mongo.db.books.find()
         print(request.form['rating'])
         print(request.form['book_id'])
+
+        #newrating = {
+        #         'User-ID' : session['u_id'],
+        #         'ISBN' : request.form['book_id'],
+        #         'Book-Rating' : int(request.form['rating'])
+        #     }
+            
+        #     # mongo.db.ratings.insert_one(newrating)
+        #     current_book = mongo.db.books.find_one({'ISBN':id}) 
+        #     average = ((current_book['SommeRating'] * current_book['average_rating']) + newrating['Book-Rating']) / (current_book['SommeRating'] + 1)
+        #     current_book['average_rating'] = average              
+        #     current_book['SommeRating'] = current_book['SommeRating'] + 1
+        #     mongo.db.books.update_one({'ISBN' : id}, {"$set" : current_book})
+
+
         list_res = list(res)[:5]
         return dumps(list_res)
 
