@@ -29,8 +29,8 @@
               <li><a class="dropdown-item" href="#">Separated link</a></li>
               </ul>
           </div>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" method="POST" action="/search">
+              <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success text-white" type="submit">Search</button>
             </form>
             <a class="btn btn-outline-danger text-white" type="submit">Log out</a>
@@ -48,7 +48,7 @@
             <p class="lead">{{res['Summary']}}</p>
             <h3>{{res['average_rating']}}</h3>
             <div class="rate_form bg-light">
-            <input class="form-control me-2" id="rating" type="number" max="10" min="0" name="rating" placeholder="Rate it">
+            <input class="form-control me-2" id="rating" type="number" max="10" min="0" name="rating" placeholder="Rate it" required>
             <button href="#group" class="btn btn-outline-primary bg-primary text-white" id="rate_button" type="submit">submit</button>
             </div>
         </div>

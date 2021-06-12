@@ -40,8 +40,8 @@
 
       <div id="content" class=" bg-dark">
           <div id="recommendation">
-        <p class="h2 text-white ml-4" >Recommended for you</p>
-        <!-- Example split danger button -->
+        <p class="h2 text-white ml-4" >Results for '{{query}}'</p>
+        
         
     </div>
       <div class="grid">
@@ -49,11 +49,11 @@
         <div class="card-group" >
           {% for j in range(0,5) %}
               <div class="card" style="width: 18rem;" id="book">
-                <img src="{{recommendation.iloc[i+j]['img_l']}}" class="card-img-top" id="book_cover" alt="...">
+                <img src="{{recommendation[i+j]['img_l']}}" class="card-img-top" id="book_cover" alt="...">
                 <div class="card-body " id="card_body">
-                  <h5 class="card-title">{{recommendation.iloc[i+j]['book_title']}}</h5>
-                  <p class="card-text">{{recommendation.iloc[i+j]['Summary']}}</p>
-                  <a href="/{{recommendation.iloc[i+j]['ISBN']}}" class="btn btn-primary">See more</a>
+                  <h5 class="card-title">{{recommendation[i+j]['book_title']}}</h5>
+                  <p class="card-text">{{recommendation[i+j]['Summary']}}</p>
+                  <a href="/{{recommendation[i+j]['ISBN']}}" class="btn btn-primary">See more</a>
                 </div>
               </div>
               {% endfor %}
