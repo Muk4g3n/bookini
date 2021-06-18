@@ -21,7 +21,7 @@ def demarage_froid(category , books_data ):
   books_data_df["weighted_score"]=books_data_df.apply(weighted_rating,axis=1)
   books_data_df=books_data_df.sort_values("weighted_score",ascending=False)
   #on retour par exemple 10 livre
-  return books_data_df[0:10]
+  return books_data_df[0:5]
 
 
 @app.route('/')
@@ -35,9 +35,9 @@ def dashboard():
         books = mongo.db.books.find()
         recommendation = demarage_froid(category,books_data)
         
-        last_rated_book = mongo.db.users.find_one({"User-ID" : session['u_id']})['last_rated']
+        # last_rated_book = mongo.db.users.find_one({"User-ID" : session['u_id']})['last_rated']
 
-        return render_template('dashbord.html',books = books,recommendation = recommendation)
+        return render_template('final.html',books = books,recommendation = recommendation)
     return redirect('/login')
 
 @app.route('/search',methods = ['GET','POST'])
@@ -147,7 +147,6 @@ def sim():
 
         list_res = list(res)[:5]
         return dumps(list_res)
-        return 'hello'
 
 
 

@@ -13,22 +13,36 @@
     ></script>
 </head>
 <body>
-    <h1 class="display-1" id="title"><i class="fas fa-book logo"></i>BOOKINI</h1>  
-    <form action="/login" method="post" id="login" class="bg-dark text-white">  
+  <div class="holder">
+  
+
+     
+    <form action="/login" method="post" id="login" class=" text-white">  
+      <h1 class="display-4" id="title"><i class="fas fa-book logo"></i>BOOKINI</h1> 
         <div class="container">
-    <div class="mb-3">
+    <div class="mb-3 text-dark">
         <label for="email class="form-label">Email address</label>
         <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 text-dark" >
         <label for="password" class="form-label">Password</label>
         <input type="password" name="password" class="form-control" id="exampleFormControlTextarea1" rows="3" required></input>
       </div>
-      <button type="submit" class="btn btn-primary">login</button>
-      <a href="/signup" class="btn btn-secondary link">signup</a>
+      <button type="submit" class="btn btn-primary" id="submit_btn">login</button>
+      <div class="signup">
+        <span class="text-dark">Don't have an account yet,</span>
+      <a href="/signup" id="signup_link">signup</a>
+      </div>
     </div>
     </form>
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id="svg">
+      <path fill="#00BF8F" d="M53,-53.8C64.9,-53.1,68.4,-32.9,70.5,-13.6C72.5,5.8,73.2,24.2,66.4,40.6C59.6,57,45.4,71.4,30.5,71.6C15.5,71.9,-0.3,57.9,-18,50.9C-35.7,43.8,-55.4,43.6,-66.4,33.8C-77.4,24.1,-79.6,4.8,-74.8,-11.5C-70,-27.9,-58,-41.4,-44.4,-41.8C-30.7,-42.2,-15.4,-29.5,2.6,-32.6C20.5,-35.6,41,-54.4,53,-53.8Z" transform="translate(100 100)" />
+    </svg>
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" id="svg2">
+      <path fill="#00BF8F" d="M30.3,-10.7C32.7,-2.3,23.7,9,12.1,17.7C0.5,26.4,-13.7,32.4,-29.3,24.8C-45,17.1,-61.9,-4.3,-57.3,-15.8C-52.6,-27.3,-26.3,-28.9,-6.2,-26.9C13.9,-24.9,27.8,-19.2,30.3,-10.7Z" transform="translate(100 100)" />
+    </svg>
 
+  </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

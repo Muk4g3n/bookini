@@ -14,48 +14,37 @@
 </head>
 <body >
     
-    <nav class="navbar navbar-dark bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/"> <i class="fas fa-book text-white"></i> BOOKINI</a>
-            <div class="btn-group">
-              <button type="button" class="btn btn-primary">Action</button>
-              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class="visually-hidden">Toggle Dropdown</span>
-              </button>
-              <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-              <li><a class="dropdown-item" href="#">Separated link</a></li>
-              </ul>
-          </div>
-            <form class="d-flex" method="POST" action="/search">
-              <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success text-white" type="submit">Search</button>
-            </form>
-            <a class="btn btn-outline-danger text-white" type="submit">Log out</a>
-          </div>
-      </nav>
-  <div class="holder bg-dark">
-      <div class="content ">
+  <nav class="navbar navbar-white bg-white" id="nav">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="/"> <i class="fas fa-book text-white logo"></i>BOOKINI</a>
+        
+        <form class="d-flex" method="POST" action="/search">
+          <input class="form-control me-2" name="query" id="search" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light" id="search_btn" type="submit">Search</button>
+        </form>
+        <a href="/logout" class="btn btn-outline-light " id="logout_btn" type="submit">Log out</a>
+      </div>
+  </nav>
+  <div class="holder">
+      <div class="content">
         <img src="{{res['img_l']}}" class="img-thumbnail" alt="...">
-        <div class="book_body text-white">
+        <div class="book_body text-dark">
             <div><h1>{{res['book_title']}}</h1>
             <h5 class="blockquote-footer display-6">
               {{res['book_author']}}
             </h5>
             </div>
-            <p class="lead">{{res['Summary']}}</p>
+            <p class="lead text-dark">{{res['Summary']}}</p>
             <h3>{{res['average_rating']}}</h3>
             {%if not rating %}
             <div class="rate_form bg-light">
             <input class="form-control me-2" id="rating" type="number" max="10" min="0" name="rating" placeholder="Rate it" required>
-            <button href="#group" class="btn btn-outline-primary bg-primary text-white" id="rate_button" type="submit">submit</button>
+            <button href="#group" class="btn btn-outline-primary text-white" id="rate_button" type="submit">submit</button>
             </div>
             {% else %}
             <div class="rate_form bg-light">
               <input class="form-control me-2" id="rating" type="number" max="10" min="0" name="rating" placeholder="{{rating['Book-Rating']}}" disabled>
-              <button href="#group" class="btn btn-outline-primary bg-primary text-white" id="rate_button" type="submit" disabled>Your rating</button>
+              <button href="#group" class="btn btn-outline-primary text-white" id="rate_button" type="submit" disabled>Your rating</button>
               </div>
             {% endif %}
         </div>
@@ -79,9 +68,9 @@
               'book_id' : window.location.pathname.replace('/','')},
       success: function (response) {
         var books = JSON.parse(response) 
-        output = ' <h1 class="text-white mt5 ml-3" >List of similair books</h1> <div class="card-group" id="group" >'
+        output = ' <h1 class="text-dark mt-5 ml-3" >List of similair books</h1> <div class="card-group" id="group" >'
           for(i in books){
-            output+= "<div class=\"card mr-5\" style=\"width: 18rem;\" id=\"book\"><img src=\"" + books[i].img_l + "\" class=\"card-img-top\" id=\"book_cover\" alt=\"...\"><div class=\"card-body \" id=\"card_body\"><h5 class=\"card-title\">" + books[i].book_title + "</h5><p class=\"card-text\">" + books[i].Summary + "</p><a href=\"/" + books[i].ISBN + "\" class=\"btn btn-primary\">See more</a></div></div>"
+            output+= "<div class=\"card mr-5\" style=\"width: 18rem;\" id=\"book\"><img src=\"" + books[i].img_l + "\" class=\"card-img-top\" id=\"book_cover\" alt=\"...\"><div class=\"card-body \" id=\"card_body\"><h5 class=\"card-title\">" + books[i].book_title + "</h5><p class=\"card-text\">" + books[i].Summary + "</p><a href=\"/" + books[i].ISBN + "\" class=\"btn\">See more</a></div></div>"
           }
           output += '</div>'
           $('.holder').append(output)

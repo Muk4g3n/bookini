@@ -4,9 +4,29 @@
   box-sizing: border-box;
 }
 
+#nav {
+  background: #00bf8f; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #001510,
+    #00bf8f
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #001510,
+    #00bf8f
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#search_btn:hover,
+#logout_btn:hover {
+  color: #00bf8f;
+}
+
 .holder {
   width: 100%;
   min-height: 93vh;
+  background-color: rgb(244, 244, 245);
 }
 
 .content {
@@ -50,9 +70,15 @@
 #rate_button {
   height: 70px;
   width: 100%;
+  background-color: #00bf8f;
 }
 
 #group {
   margin-top: 100px;
   transform: scale(0.8);
+}
+
+.btn {
+  background-color: #00bf8f;
+  color: white;
 }

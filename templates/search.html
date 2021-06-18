@@ -13,34 +13,23 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='css/Dashboard.css') }}">
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/"> <i class="fas fa-book text-white logo"></i>BOOKINI</a>
-            <div class="btn-group">
-              <button type="button" class="btn btn-primary">Action</button>
-              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class="visually-hidden">Toggle Dropdown</span>
-              </button>
-              <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-              <li><a class="dropdown-item" href="#">Separated link</a></li>
-              </ul>
-          </div>
-            <form class="d-flex" method="POST" action="/search">
-              <input class="form-control me-2" name="query" id="search" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success text-white" id="search_btn" type="submit">Search</button>
-            </form>
-            <a href="/logout" class="btn btn-outline-danger text-white" type="submit">Log out</a>
-          </div>
-      </nav>
+  <nav class="navbar navbar-white bg-white" id="nav">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="/"> <i class="fas fa-book text-white logo"></i>BOOKINI</a>
+        
+        <form class="d-flex" method="POST" action="/search">
+          <input class="form-control me-2" name="query" id="search" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light" id="search_btn" type="submit">Search</button>
+        </form>
+        <a href="/logout" class="btn btn-outline-light " id="logout_btn" type="submit">Log out</a>
+      </div>
+  </nav>
 
 
 
-      <div id="content" class=" bg-dark">
+      <div id="content">
           <div id="recommendation">
-        <p class="h2 text-white ml-4" >Results for '{{query}}'</p>
+        <p class="h2 text-dark ml-4" >Results for '{{query}}'</p>
         
         
     </div>

@@ -10,23 +10,23 @@
       src="https://kit.fontawesome.com/d80ad0feb1.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/categories.css') }}"
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/categories.css') }}">
 </head>
 <body>
     <div id="content" class="bg-white">  
-        <form class="bg-dark" id="form" action="/categories" method="POST">
+        <form  id="form" action="/categories" method="POST">
           <h1 id="title" class="text-white" > <i class="fas fa-book text-white mr-2"></i>BOOKINI</h1>
           <h3 id="choose" class="ml-4 text-white" >Choose the categories that you like</h3>
           <div id="container" class="ml-5 mt-5">
             {% for i in range(0,36) %}
-            <div class="input-group-text  bg-primary" id="cat">
+            <div class="input-group-text" id="cat">
               <input class="form-check-input  ml-1" type="checkbox" name="cat" value="{{categories[i]['Category']}}" aria-label="Checkbox for following text input">
               <span class="ml-4 text-white">{{categories[i]['Category']}}</span>
             </div>  
             {% endfor %}  
           </div>
           <div id="holder">
-          <button type="submit" id="submit_btn" class="btn btn-primary">submit</button>
+          <button type="submit" id="submit_btn" class="btn">submit</button>
         </div>
         </form>
     </div>
