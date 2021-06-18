@@ -14,6 +14,13 @@
   color: #00bf8f;
 }
 
+#error {
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  font-size: 2em;
+}
+
 #signup {
   width: 40%;
   height: 80%;
@@ -29,7 +36,7 @@
 
 .container {
   width: 80%;
-  height: 90%;
+  height: 75%;
   padding-top: 5px;
   display: flex;
   flex-direction: column;

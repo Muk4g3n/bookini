@@ -15,7 +15,10 @@
 <body>
   <div class="holder">
   <form action="/signup" method="POST" id="signup" class="text-white">  
-    <h1 class="display-4" id="title"><i class="fas fa-book logo"></i>BOOKINI</h1>   
+    <h1 class="display-4" id="title"><i class="fas fa-book logo"></i>BOOKINI</h1>  
+    {% if not error == None  %}
+        <p class="text-danger" id="error" >{{error}}</p>
+        {% endif %} 
       <div class="container">
     <div class="mb-3 text-dark">
         <label for="email" class="form-label">Email address</label>
@@ -23,8 +26,8 @@
       </div>
       <div class="input-group text-dark">
         <span class="input-group-text text-white" id="name">First and last name</span>
-        <input type="text" aria-label="First name" name="firstname" class="form-control" required>
-        <input type="text" aria-label="Last name" name="lastname" class="form-control" required>
+        <input type="text" aria-label="First name" minlength="6" name="firstname" class="form-control" required>
+        <input type="text" aria-label="Last name" minlength="6" name="lastname" class="form-control" required>
       </div>
       <div class="mb-3 text-dark">
         <label for="Age" class="form-label">Age</label>
@@ -32,7 +35,7 @@
       </div>
       <div class="mb-3 text-dark">
         <label for="password" class="form-label">Password</label>
-        <input type="password" name="password" class="form-control" id="exampleFormControlTextarea1" rows="3" required></input>
+        <input type="password" name="password" minlength="6" class="form-control" id="exampleFormControlTextarea1" rows="3" required></input>
       </div>
       <button type="submit" class="btn btn-primary" id="submit_btn">signup</button>
       <div class="signup">

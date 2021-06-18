@@ -19,6 +19,9 @@
      
     <form action="/login" method="post" id="login" class=" text-white">  
       <h1 class="display-4" id="title"><i class="fas fa-book logo"></i>BOOKINI</h1> 
+        {% if not error == None  %}
+        <p class="text-danger" id="error" >{{error}}</p>
+        {% endif %}
         <div class="container">
     <div class="mb-3 text-dark">
         <label for="email class="form-label">Email address</label>
@@ -26,7 +29,7 @@
       </div>
       <div class="mb-3 text-dark" >
         <label for="password" class="form-label">Password</label>
-        <input type="password" name="password" class="form-control" id="exampleFormControlTextarea1" rows="3" required></input>
+        <input type="password" name="password" class="form-control" minlength="6" id="exampleFormControlTextarea1" rows="3" required></input>
       </div>
       <button type="submit" class="btn btn-primary" id="submit_btn">login</button>
       <div class="signup">

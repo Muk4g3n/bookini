@@ -1,3 +1,4 @@
+from os import error
 from flask import Flask,render_template,url_for,request,redirect, session , jsonify
 from flask_pymongo import PyMongo
 import pandas as pd 
@@ -78,13 +79,14 @@ def login():
                 session['u_id'] = u_id
                 return redirect('/')
             else:
-                return "password incorrect"
+                return render_template('login.html',error="Password incorrect")
+                
         else:
-            return "user does not exist"
+            return render_template('login.html',error="User does not exist")
 
     else:
         session.pop('u_id',None)
-        return render_template('login.html')
+        return render_template('login.html',error=None)
 
 @app.route('/signup',methods = ['GET','POST'])
 def signup():
@@ -109,10 +111,10 @@ def signup():
             session['u_id'] = u_id
             return redirect('/categories')
         else:
-            return 'user already exists'
+            return render_template('signup.html',error ='user already exists')
     else:
         session.pop('u_id',None)
-        return render_template('signup.html')
+        return render_template('signup.html',error = None)
 
 @app.route('/categories',methods =['GET','POST'])
 def cats():
