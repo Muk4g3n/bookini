@@ -48,6 +48,7 @@ def search():
         mongo.db.books.ensure_index([('book_title',"text"),('book_author',"text"),('publisher',"text"),('Summary',"text"),('Category',"text")])
         
         recommendation = mongo.db.books.find( { "$text": { "$search": query } } )
+        print(recommendation)
         return render_template('search.html',recommendation = recommendation,query=query)
         
 

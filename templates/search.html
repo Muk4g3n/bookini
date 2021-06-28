@@ -29,11 +29,12 @@
 
       <div id="content">
           <div id="recommendation">
-        <p class="h2 text-dark ml-4" >Results for '{{query}}'</p>
+        <p class="h2 text-dark ml-4" > {{ 'No results for '+query if recommendation else 'Results for '+query }}</p>
         
         
     </div>
       <div class="grid">
+        {% if not recommendation %}
         {% for i in range(0,10,5) %}
         <div class="card-group" >
           {% for j in range(0,5) %}
@@ -48,6 +49,7 @@
               {% endfor %}
           </div>
           {% endfor %}
+          {% endif %}
         </div>
               <button class="btn text-primary" ><i class="fas fa-plus text-primary"></i> Show more</button>
 
